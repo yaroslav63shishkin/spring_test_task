@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="init-author" author="yaroslav">
+        <sqlFile path="db/scripts/init_author.sql"/>
+    </changeSet>
+
+    <changeSet id="init-genre" author="yaroslav">
+        <sqlFile path="db/scripts/init_genre.sql"/>
+    </changeSet>
+
+    <changeSet id="init-book" author="yaroslav">
+        <sqlFile path="db/scripts/init_book.sql"/>
+    </changeSet>
+
+</databaseChangeLog>
