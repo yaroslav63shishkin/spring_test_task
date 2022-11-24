@@ -11,14 +11,14 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/test
+    url: jdbc:postgresql://localhost:54223/test
     username: postgres
-    password: root
+    password: postgres
 
   liquibase:
-    url: jdbc:postgresql://localhost:5432/test
+    url: jdbc:postgresql://localhost:54223/test
     user: postgres
-    password: root
+    password: postgres
     change-log: classpath:db/changelog/changelog-master.xml
 
   jpa:
