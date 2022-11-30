@@ -17,7 +17,7 @@ public class Genre extends AbstractObject {
     @Column
     private String description;
 
-    @OneToOne(mappedBy = "genre", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "genre", fetch = FetchType.LAZY) // fixme: должен быть MtM
     private Book book;
 
     public Genre(String description, Book book) {

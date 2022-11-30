@@ -66,7 +66,7 @@ public class AuthorServiceImpl implements AuthorService {
                 .map(mapper::toAuthorDto);
 
         if (pageNumber > pageAuthor.getTotalPages()) {
-            throw new NonExistentPageException("Page " + pageNumber + " does not exist");
+            throw new NonExistentPageException("Page " + pageNumber + " does not exist"); //fixme: лучше возвращать пустой результат
         }
 
         return pageAuthor;
@@ -89,7 +89,7 @@ public class AuthorServiceImpl implements AuthorService {
         repository.findById(authorDto.getId()).orElseThrow(() ->
                         new NoElementException("Author with ID " + authorDto.getId() + " does not exist"));
 
-        return repository.save(mapper.toAuthor(authorDto));
+        return repository.save(mapper.toAuthor(authorDto)); // fixme: сохраняет нового а не изменяет старого?
     }
 
     @Override

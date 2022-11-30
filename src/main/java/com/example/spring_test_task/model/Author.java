@@ -31,6 +31,8 @@ public class Author extends AbstractObject {
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Book> books;
 
+    //fixme: лучше использовать билдер
+    //fixme: вместо сырых типом использовать ValueObject
     public Author(String name, String surname, String middleName, LocalDate dateOfBirth, List<Book> books) {
         this.name = name;
         this.surname = surname;

@@ -77,6 +77,7 @@ public class GenreServiceImpl implements GenreService {
 
         log.info("Input parameter fot get by ID: id={}", id);
 
+        // todo: вызовы лучше разделять, проще читать и определять проблемные места + анализ ide поможет избежать NPE
         return mapper.toGenreDto(repository.findById(id)
                 .orElseThrow(() -> new NoElementException("Book with ID " + id + " does not exist")));
     }

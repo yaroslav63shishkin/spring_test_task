@@ -23,12 +23,13 @@ import javax.validation.constraints.PositiveOrZero;
 @Slf4j
 @RestController
 @Validated
-@Transactional
+@Transactional //fixme: над классом контроллера не есть хорошо, нам не нужны транзакции на все методы
 @RequestMapping("spring_test_task/${url.api.version}/authors")
 public class AuthorController {
 
     private AuthorService service;
 
+    //fixme: инжектить лучше через конструктор и делать класс иммутабельным
     @Autowired
     public void setService(AuthorService service) {
 
@@ -42,6 +43,8 @@ public class AuthorController {
         return new ResponseEntity<>(service.createAuthor(author), HttpStatus.CREATED);
     }
 
+    //fixme: @Pattern пораждает ли объект Pattern на каждый вызов?
+    //fixme: параметры пагинации и сортировки лучше вынести в класс
     @GetMapping("/get")
     public ResponseEntity<Page<AuthorDto>> getAllAndSort(
             @RequestParam(value = "page", defaultValue = "0") @PositiveOrZero Integer page,
@@ -66,7 +69,7 @@ public class AuthorController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping("/update/fields")
+    @PatchMapping("/update/fields") //fixme: зачем дополнительный ресурс?
     @Validated(MarkerValidation.OnUpdate.class)
     public ResponseEntity<?> updateFieldsAuthor(@RequestBody @Valid AuthorDto authorDto) {
 

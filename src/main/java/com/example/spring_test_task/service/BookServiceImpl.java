@@ -29,13 +29,15 @@ import static com.example.spring_test_task.util.CreatorCopiesUtil.copyProperties
 @Slf4j
 @Service
 @Validated
-@Transactional
+@Transactional // todo: над классом н
 public class BookServiceImpl implements BookService {
 
-    BookRepository repository;
+    BookRepository repository; // модификаторы доступа
 
     BookMapper mapper;
 
+    //todo: инжектить через конструктор или поля
+    //todo: сервисы должны быть иммутабельными
     @Autowired
     public void setRepository(BookRepository repository) {
 

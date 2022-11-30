@@ -33,7 +33,7 @@ public class ResponseControllerAdvice {
         ErrorResultDto responseDto = ErrorResultDto.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.BAD_REQUEST.value())
-                .message("Bad request")
+                .message("Bad request") //fixme: сообщуние можно получить из HttpStatus.BAD_REQUEST.getReasonPhrase()
                 .debugInfo(debugMessage)
                 .build();
         return ResponseEntity

@@ -11,6 +11,7 @@ import java.util.Set;
 @UtilityClass
 public class CreatorCopiesUtil {
 
+    //fixme: если он не используется внешними сущностями лучше его скрыть
     public static String[] getNullPropertyNames (Object objectNew) {
 
         BeanWrapper source = new BeanWrapperImpl(objectNew);
