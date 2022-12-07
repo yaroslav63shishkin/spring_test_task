@@ -6,9 +6,19 @@ services:
     container_name: 'test_task_postgres_db'
     restart: always
     volumes:
-      - ./src/main/resources/tmp/postgres:/var/lib/postgresql/data
+      - ./tmp/postgres:/var/lib/postgresql/data
     environment:
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_DB=test'
     ports:
       - '54223:5432'
+
+  postgres_test_db:
+    image: 'postgres:14'
+    container_name: 'test_db'
+    restart: always
+    environment:
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_DB=test_db'
+    ports:
+      - '54224:5432'

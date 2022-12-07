@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="deleting-fk-from-table-book" author="yaroslav">
+        <dropForeignKeyConstraint baseTableName="book"
+                                  constraintName="FK_BOOK_AUTHOR"/>
+        <dropForeignKeyConstraint baseTableName="book"
+                                  constraintName="FK_BOOK_GENRE"/>
+    </changeSet>
+
+    <changeSet id="deleting-column-from-table-book" author="yaroslav">
+        <dropColumn tableName="book">
+            <column name="author_id"/>
+        </dropColumn>
+        <dropColumn tableName="book">
+            <column name="genre_id"/>
+        </dropColumn>
+    </changeSet>
+
+    <changeSet id="create-table-author_book" author="yaroslav">
+        <createTable tableName="author_book">
+            <column name="book_id" type="BIGINT"/>
+            <column name="author_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-fk-author-author_book" author="yaroslav">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="author_book"
+                                 constraintName="FK_AUTHOR_AUTHOR_BOOK"
+                                 referencedColumnNames="id" referencedTableName="author"/>
+    </changeSet>
+
+    <changeSet id="create-fk-book-author_book" author="yaroslav">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="author_book"
+                                 constraintName="FK_BOOK_AUTHOR_BOOK"
+                                 referencedColumnNames="id" referencedTableName="book"/>
+    </changeSet>
+
+    <changeSet id="create-table-book_genre" author="yaroslav">
+        <createTable tableName="book_genre">
+            <column name="book_id" type="BIGINT"/>
+            <column name="genre_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-fk-genre-book_genre" author="yaroslav">
+        <addForeignKeyConstraint baseColumnNames="genre_id" baseTableName="book_genre"
+                                 constraintName="FK_GENRE_BOOK_GENRE"
+                                 referencedColumnNames="id" referencedTableName="genre"/>
+    </changeSet>
+
+    <changeSet id="create-fk-book-book_genre" author="yaroslav">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book_genre"
+                                 constraintName="FK_BOOK_BOOK_GENRE"
+                                 referencedColumnNames="id" referencedTableName="book"/>
+    </changeSet>
+
+</databaseChangeLog>
